@@ -1,59 +1,337 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy — Remigo</title>
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-           max-width: 720px; margin: 0 auto; padding: 32px 24px;
-           color: #1a1a1a; line-height: 1.7; }
-    h1   { font-size: 1.8rem; margin-bottom: 4px; }
-    h2   { font-size: 1.1rem; margin-top: 2rem; color: #1A6BC4; }
-    p    { margin: 8px 0; }
-    ul   { padding-left: 20px; }
-    .date { color: #666; font-size: 0.9rem; }
+    :root {
+      --bg:         #F5F7FA;
+      --surface:    #FFFFFF;
+      --text:       #1B2A3B;
+      --secondary:  #5E6E82;
+      --accent:     #1A6B55;
+      --accent-dim: #E8F4F0;
+      --border:     #D8DFE8;
+      --chip-bg:    #EAF0F6;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg:         #111820;
+        --surface:    #1A2535;
+        --text:       #E2EAF3;
+        --secondary:  #8A97A8;
+        --accent:     #2E9B7A;
+        --accent-dim: #162D26;
+        --border:     #273447;
+        --chip-bg:    #1E2D3E;
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 16px; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      padding: 48px 20px 80px;
+    }
+
+    .wrapper { max-width: 680px; margin: 0 auto; }
+
+    .header { margin-bottom: 40px; }
+
+    .app-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-dim);
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+
+    .app-eyebrow svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    h1 {
+      font-size: clamp(1.6rem, 4vw, 2.1rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    .meta { color: var(--secondary); font-size: 0.875rem; }
+
+    hr { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
+
+    .section { margin-bottom: 36px; }
+
+    h2 {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    p { color: var(--secondary); font-size: 0.9375rem; margin-bottom: 10px; }
+    p:last-child { margin-bottom: 0; }
+
+    ul { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px; }
+
+    ul li {
+      display: flex;
+      gap: 10px;
+      color: var(--secondary);
+      font-size: 0.9375rem;
+      line-height: 1.6;
+    }
+
+    ul li::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 0.58em;
+    }
+
+    .callout {
+      background: var(--accent-dim);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 10px 10px 0;
+      padding: 16px 20px;
+      margin-bottom: 14px;
+    }
+
+    .callout p { color: var(--text); margin-bottom: 0; }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+
+    .chip {
+      background: var(--chip-bg);
+      color: var(--secondary);
+      font-size: 0.8125rem;
+      padding: 5px 12px;
+      border-radius: 100px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .chip-x { color: #D94F4F; font-weight: 700; font-size: 0.875rem; line-height: 1; }
+
+    .steps { display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px; }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+
+    .step-num {
+      width: 26px;
+      height: 26px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .step-body { flex: 1; }
+    .step-label { font-weight: 600; font-size: 0.875rem; color: var(--text); margin-bottom: 2px; }
+    .step-desc { font-size: 0.8125rem; color: var(--secondary); margin-bottom: 0; line-height: 1.5; }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+    }
+
+    .contact-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--accent-dim);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-icon svg { width: 18px; height: 18px; color: var(--accent); }
+    .contact-label { font-size: 0.75rem; color: var(--secondary); margin-bottom: 1px; }
+    .contact-value { font-size: 0.9375rem; font-weight: 600; color: var(--text); }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .footer {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      color: var(--secondary);
+      font-size: 0.8125rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
   </style>
 </head>
 <body>
+<div class="wrapper">
 
-<h1>Privacy Policy</h1>
-<p class="date">Last updated: June 2026</p>
+  <header class="header">
+    <div class="app-eyebrow">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+      Remigo · ArmaMarama
+    </div>
+    <h1>Privacy Policy</h1>
+    <p class="meta">Last updated: July 2026</p>
+  </header>
 
-<h2>Who we are</h2>
-<p>Remigo is a mobile application developed by ArmaMarama. This policy explains how the app handles your data.</p>
+  <div class="section">
+    <h2>Who we are</h2>
+    <p>Remigo is a mobile application developed by ArmaMarama. This policy explains how the app handles your data.</p>
+  </div>
 
-<h2>What data we collect</h2>
-<p>Remigo collects the following data, all of which stays on your device:</p>
-<ul>
-  <li><strong>Location</strong> — Used to detect when you leave a saved place (geofence exit or GPS reading). Location is accessed only briefly during a departure event and is never stored beyond the detection moment.</li>
-  <li><strong>Physical activity</strong> — Used as a supplementary signal to improve departure confidence scoring (e.g. walking vs. still). Never stored persistently.</li>
-  <li><strong>Saved places and item lists</strong> — Stored locally on your device using Android SharedPreferences. Never uploaded.</li>
-  <li><strong>Reminder history</strong> — A log of past departure reminders (place name, items, timestamp). Stored locally, max 20 entries.</li>
-</ul>
+  <hr>
 
-<h2>What we do NOT collect</h2>
-<ul>
-  <li>We do not collect your name, email, or any personal identifier.</li>
-  <li>We do not track your route, travel history, or movement patterns.</li>
-  <li>We do not share any data with third parties, advertisers, or analytics services.</li>
-  <li>We do not send any data to external servers. The app has no backend.</li>
-</ul>
+  <div class="section">
+    <h2>What data we collect</h2>
+    <p>All data collected by Remigo stays exclusively on your device and is never uploaded anywhere.</p>
+    <ul>
+      <li><strong>Location</strong> — Used to detect when you leave a saved place (geofence exit or GPS reading). Accessed only briefly during a departure event; never stored beyond the detection moment.</li>
+      <li><strong>Physical activity</strong> — Used as a supplementary signal to improve departure confidence scoring (e.g. walking vs. still). Never stored persistently.</li>
+      <li><strong>Saved places and item lists</strong> — Stored locally on your device using Android SharedPreferences. Never uploaded.</li>
+      <li><strong>Reminder history</strong> — A log of past departure reminders (place name, items, timestamp). Stored locally, maximum 20 entries.</li>
+    </ul>
+  </div>
 
-<h2>Background location</h2>
-<p>The app requests "Allow all the time" location permission so that departure reminders can fire even when the app is closed. This permission is used exclusively for geofence exit detection. Location is accessed for a few seconds per departure event — never continuously tracked.</p>
+  <hr>
 
-<h2>In-app purchases</h2>
-<p>Purchases are processed by Google Play. We do not collect or store any payment information.</p>
+  <div class="section">
+    <h2>What we do NOT collect</h2>
+    <div class="chips">
+      <span class="chip"><span class="chip-x">✕</span> Name or email</span>
+      <span class="chip"><span class="chip-x">✕</span> Route or travel history</span>
+      <span class="chip"><span class="chip-x">✕</span> Third-party sharing</span>
+      <span class="chip"><span class="chip-x">✕</span> Analytics or ads</span>
+      <span class="chip"><span class="chip-x">✕</span> External servers</span>
+    </div>
+    <p>The app has no backend. No data leaves your phone.</p>
+  </div>
 
-<h2>Children</h2>
-<p>This app is not directed at children under 13.</p>
+  <hr>
 
-<h2>Changes to this policy</h2>
-<p>We may update this policy occasionally. The updated version will be reflected by the "Last updated" date above.</p>
+  <div class="section">
+    <h2>Background location</h2>
+    <div class="callout">
+      <p>The app requests "Allow all the time" location permission so departure reminders can fire even when the app is closed. This permission is used <strong>exclusively</strong> for geofence exit detection — never for tracking, advertising, or profiling.</p>
+    </div>
+    <p>Location is accessed for a few seconds per departure event, then stops immediately.</p>
+  </div>
 
-<h2>Contact</h2>
-<p>Questions? Email: <a href="mailto:arma.marama@gmail.com">arma.marama@gmail.com</a></p>
+  <hr>
 
+  <div class="section">
+    <h2>Data deletion</h2>
+    <p>Because all data is stored locally on your device, you can delete it at any time without contacting us.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-label">Uninstall the app</div>
+          <p class="step-desc">Removes all data immediately and permanently.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-label">Clear app data</div>
+          <p class="step-desc">Settings → Apps → Remigo → Storage → Clear data. Keeps the app installed but wipes all places, items, and settings.</p>
+        </div>
+      </div>
+    </div>
+    <p>There is no account or server-side data — nothing to request deletion of from us.</p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>In-app purchases</h2>
+    <p>Purchases are processed by Google Play. We do not collect or store any payment information.</p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>Children</h2>
+    <p>This app is not directed at children under 13.</p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>Changes to this policy</h2>
+    <p>We may update this policy occasionally. The updated version will be reflected by the "Last updated" date at the top of this page.</p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>Contact</h2>
+    <div class="contact-row">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <polyline points="2,4 12,13 22,4"/>
+        </svg>
+      </div>
+      <div>
+        <div class="contact-label">Questions or privacy requests</div>
+        <div class="contact-value"><a href="mailto:arma.marama@gmail.com">arma.marama@gmail.com</a></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <span>© 2026 ArmaMarama</span>
+    <span>Remigo — Leaving Reminder</span>
+  </footer>
+
+</div>
 </body>
 </html>
